@@ -8,22 +8,41 @@
     <script src="https://unpkg.com/alpinejs" defer></script>
 </head>
 <body class="bg-[#2F5755] flex items-center justify-center min-h-screen">
-    <div x-data="{}" class="text-2xl bg-white rounded-lg p-8 w-full max-w-2/4 shadow-xl/20">
+    <div 
+    x-data="{
+        billAmount: null,
+        tipPercent: 15,
+        calculatedTip: '0.00',
+        showResult: false,
+        calculateTip(){
+            if(this.billAmount > 0){
+                let tip = this.billAmount * (this.tipPercent / 100);
+                this.calculatedTip = tip.toFixed(2);
+                this.showResult = true;
+            }
+        }
+    }" 
+    class="text-2xl bg-white rounded-lg p-8 w-full max-w-2/4 shadow-xl/20">
         <div class="flex items-center justify-between">
             <p class="font-bold">Bill Amount</p>
-            <input type="number" class="border-1 rounded-md p-2" id="amount">
+            <input x-model.number="billAmount" type="number" class="border-1 rounded-md p-2" id="amount" placeholder="0.00">
         </div>
         <div class="mt-6 flex items-center justify-between">
             <p class="font-semibold">How was the service?</p>
-            <select name="service" id="service" class="border-1 w-2/4 p-2 rounded-md text-sm">
+            <select x-model.number="tipPercent" name="service" id="service" class="border-1 w-2/4 p-2 rounded-md text-sm">
                 <option value="2">Poor (2%)</option>
                 <option value="5">Average (5%)</option>
                 <option value="8">Good (8%)</option>
                 <option value="10">Very Good (10%)</option>
             </select>
         </div>
-        <button @click="alert('Hello World!')" class="ml-70 border-3 mt-6 font-semibold border-transparent bg-[#0F828C] rounded-full pb-1 px-2 hover:bg-[#78B9B5]">Give my tip</button>
+        <button @click="calculateTip()" class="ml-70 border-3 mt-6 font-semibold border-transparent bg-[#0F828C] rounded-full pb-1 px-2 hover:bg-[#78B9B5]">Give my tip</button>
+        <div x-show="showResult" x-transition.delay.50ms class="mt-6 text-center font-semibold flex-1">
+            <p class="text-lg">Your Tip: 
 
+                <span x-text="calculatedTip" class="text-[#16476A]"></span>
+            </p>
+        </div>
     </div>
 </body>
 </html>
