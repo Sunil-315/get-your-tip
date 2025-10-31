@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Tip</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+</head>
+<body class="bg-[#2F5755] flex items-center justify-center min-h-screen">
+    <div x-data="{}" class="text-2xl bg-white rounded-lg p-8 w-full max-w-2/4 shadow-xl/20">
+        <div class="flex items-center justify-between">
+            <p class="font-bold">Bill Amount</p>
+            <input type="number" class="border-1 rounded-md p-2" id="amount">
+        </div>
+        <div class="mt-6 flex items-center justify-between">
+            <p class="font-semibold">How was the service?</p>
+            <select name="service" id="service" class="border-1 w-2/4 p-2 rounded-md text-sm">
+                <option value="2">Poor (2%)</option>
+                <option value="5">Average (5%)</option>
+                <option value="8">Good (8%)</option>
+                <option value="10">Very Good (10%)</option>
+            </select>
+        </div>
+        <button @click="alert('Hello World!')" class="ml-70 border-3 mt-6 font-semibold border-transparent bg-[#0F828C] rounded-full pb-1 px-2 hover:bg-[#78B9B5]">Give my tip</button>
+
+    </div>
+</body>
+</html>
